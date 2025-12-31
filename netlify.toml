@@ -3,4 +3,4 @@
   publish = "build/web"
 
 [[plugins]]
-  package = "@netlify/plugin-flutter"
+  package = "netlify-plugin-flutter"

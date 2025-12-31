@@ -1,0 +1,27 @@
+{
+  "name": "tamagotchi",
+  "version": "1.0.0",
+  "description": "An anime-inspired PocketPet virtual companion. Supports Android, iOS, Web, Windows, macOS, and Linux from a single codebase.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pseudo-dice/tamagotchi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pseudo-dice/tamagotchi/issues"
+  },
+  "homepage": "https://github.com/pseudo-dice/tamagotchi#readme",
+  "devDependencies": {
+    "netlify-plugin-flutter": "^1.2.0"
+  }
+}
