@@ -32,11 +32,21 @@ An anime-inspired PocketPet virtual companion. Supports Android, iOS, Web, Windo
 
 ## Build Releases
 
-- **Android:** `flutter build apk` or `flutter build appbundle`
-- **iOS:** `flutter build ipa`
-- **Web:** `flutter build web`
-- **Windows:** `flutter build windows`
-- **macOS:** `flutter build macos`
-- **Linux:** `flutter build linux`
+### Current Linux Builds
 
-Refer to the official Flutter documentation for platform-specific signing and store submission steps.
+- **Android APK** — Generated with `flutter build apk --release`; output at `build/app/outputs/flutter-apk/app-release.apk`.
+- **Linux desktop bundle** — Generated with `flutter build linux`; output folder at `build/linux/x64/release/bundle/`.
+- **Web bundle** — Generated with `flutter build web`; static assets in `build/web/` ready to deploy to any static host.
+
+Recreate the artifacts by running the commands above from the project root after `flutter pub get`. Copy the resulting files/folders to your distribution channel (for example, attach the APK and Linux bundle to a GitHub Release, and upload the web directory to a CDN or static hosting service).
+
+### Other Platforms
+
+Additional targets remain available when building on their respective host operating systems:
+
+- **Android App Bundle:** `flutter build appbundle`
+- **iOS:** `flutter build ipa` *(requires macOS with Xcode)*
+- **Windows:** `flutter build windows` *(requires Windows with Visual Studio build tools)*
+- **macOS:** `flutter build macos` *(requires macOS)*
+
+Review the Flutter docs for platform-specific code signing and store submission details.
