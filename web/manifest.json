@@ -1,6 +1,6 @@
 {
-    "name": "tamagotchi_pet",
-    "short_name": "tamagotchi_pet",
+    "name": "PocketPet",
+    "short_name": "PocketPet",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

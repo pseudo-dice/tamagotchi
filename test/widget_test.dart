@@ -5,26 +5,41 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:provider/provider.dart';
 
-import 'package:tamagotchi_pet/main.dart';
+import 'package:pocketpet/src/app.dart';
+import 'package:pocketpet/src/services/pet_storage.dart';
+import 'package:pocketpet/src/state/pet_state.dart';
+import 'package:pocketpet/src/state/theme_state.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('PocketPet app renders start screen',
+      (WidgetTester tester) async {
+    final petState = PetState(storage: _FakePetStorage());
+    addTearDown(petState.dispose);
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    await tester.pumpWidget(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider<PetState>.value(value: petState),
+          ChangeNotifierProvider<ThemeState>(create: (_) => ThemeState()),
+        ],
+        child: const PocketPetApp(),
+      ),
+    );
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.textContaining('PocketPet'), findsWidgets);
   });
+}
+
+class _FakePetStorage extends PetStorage {
+  @override
+  Future<PetSnapshot?> load() async => null;
+
+  @override
+  Future<void> save(PetSnapshot snapshot) async {}
+
+  @override
+  Future<void> clear() async {}
 }

@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../state/pet_state.dart';
 
 class PetStorage {
-  static const _storageKey = 'tamagotchi_pet_state';
+  static const _storageKey = 'pocketpet_state';
 
   Future<PetSnapshot?> load() async {
     final prefs = await SharedPreferences.getInstance();
@@ -16,12 +16,22 @@ class PetStorage {
 
     try {
       final data = jsonDecode(raw) as Map<String, dynamic>;
+      final shellName = data['shellStyle'] as String?;
+      final characterName = data['character'] as String?;
       return PetSnapshot(
         hunger: (data['hunger'] as num?)?.toInt() ?? PetState.initialStat,
         energy: (data['energy'] as num?)?.toInt() ?? PetState.initialStat,
         happiness: (data['happiness'] as num?)?.toInt() ?? PetState.initialStat,
         lastUpdated: DateTime.tryParse(data['lastUpdated'] as String? ?? '') ??
             DateTime.now().toUtc(),
+        shellStyle: PetShellStyle.values.firstWhere(
+          (style) => style.name == shellName,
+          orElse: () => PetState.defaultShellStyle,
+        ),
+        character: PetCharacter.values.firstWhere(
+          (ch) => ch.name == characterName,
+          orElse: () => PetState.defaultCharacter,
+        ),
       );
     } on FormatException {
       return null;
@@ -35,6 +45,8 @@ class PetStorage {
       'energy': snapshot.energy,
       'happiness': snapshot.happiness,
       'lastUpdated': snapshot.lastUpdated.toUtc().toIso8601String(),
+      'shellStyle': snapshot.shellStyle.name,
+      'character': snapshot.character.name,
     });
     await prefs.setString(_storageKey, payload);
   }

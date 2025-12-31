@@ -1,5 +1,5 @@
-name: tamagotchi_pet
-description: A Flutter-powered virtual pet game for mobile, web, and desktop.
+name: pocketpet
+description: A Flutter-powered anime-inspired virtual pet game for mobile, web, and desktop.
 publish_to: "none"
 version: 0.1.0+1
 environment:
@@ -10,6 +10,7 @@ dependencies:
     sdk: flutter
   provider: ^6.1.2
   shared_preferences: ^2.2.3
+  google_fonts: ^6.2.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

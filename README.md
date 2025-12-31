@@ -1,6 +1,6 @@
-# Tamagotchi Pet
+# PocketPet
 
-A cross-platform Flutter Tamagotchi-style virtual pet. Supports Android, iOS, Web, Windows, macOS, and Linux from a single codebase.
+An anime-inspired PocketPet virtual companion. Supports Android, iOS, Web, Windows, macOS, and Linux from a single codebase.
 
 ## Getting Started
 

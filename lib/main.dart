@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'src/app.dart';
 import 'src/services/pet_storage.dart';
 import 'src/state/pet_state.dart';
+import 'src/state/theme_state.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,8 +17,9 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider<PetState>.value(value: petState),
+        ChangeNotifierProvider<ThemeState>(create: (_) => ThemeState()),
       ],
-      child: const TamagotchiApp(),
+      child: const PocketPetApp(),
     ),
   );
 }
